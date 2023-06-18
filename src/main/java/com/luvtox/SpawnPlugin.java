@@ -26,6 +26,7 @@ public class SpawnPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         getLogger().info("Enabling EzSpawn by luvtox");
+
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();
         }
