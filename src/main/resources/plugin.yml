@@ -1,0 +1,33 @@
+name: EzSpawn
+main : com.luvtox.SpawnPlugin
+author : Devity
+version: 0.0.1
+api-version: 1.19
+commands:
+  ezspawn:
+    description: Reloads the EzSpawn configuration
+    usage: /ezspawn reload
+    permissions: ezspawn.reload
+
+  setspawn:
+    description: Set the spawn location.
+    usage: /setspawn
+    permission: ezspawn.setspawn
+
+  spawn:
+    description: Teleport to the spawn location.
+    usage: /spawn
+    permission: ezspawn.spawn
+
+permissions:
+  ezspawn.setspawn:
+    description: Permission to set the spawn location.
+    default: op
+
+  ezspawn.spawn:
+    description: Permission to teleport to the spawn location.
+    default: true
+  ezspawn.reload:
+    description: Permission to teleport to the spawn location.
+    default: op
+
