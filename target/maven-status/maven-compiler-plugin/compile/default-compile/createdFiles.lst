@@ -1,6 +1,0 @@
-com\luvtox\commands\ReloadCommand.class
-com\luvtox\Config\ConfigManager.class
-com\luvtox\Listener\SpawnEventListener.class
-com\luvtox\Managers\SpawnLocationManager.class
-com\luvtox\commands\SpawnCommands.class
-com\luvtox\SpawnPlugin.class
