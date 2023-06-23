@@ -10,7 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.luvtox.Config.ConfigManager;
 import com.luvtox.Listener.SpawnEventListener;
 import com.luvtox.Managers.SpawnLocationManager;
-import com.luvtox.commands.EzSpawnHelpCommand;
 import com.luvtox.commands.ReloadCommand;
 import com.luvtox.commands.SpawnCommands;
 
@@ -40,7 +39,6 @@ public class SpawnPlugin extends JavaPlugin {
         ConfigManager.loadConfig();
         getLogger().info("Config has been loaded");
         getLogger().info("Loading commands");
-        getCommand("ezspawn").setExecutor(new EzSpawnHelpCommand());
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
         getServer().getPluginManager().registerEvents(new SpawnEventListener(), this);
         getLogger().info("Commands have been loaded");
