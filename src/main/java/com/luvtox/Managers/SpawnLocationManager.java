@@ -27,4 +27,3 @@ public static Location loadSpawnLocation() {
 }
 
 }
-

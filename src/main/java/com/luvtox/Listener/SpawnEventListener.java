@@ -28,10 +28,10 @@ public class SpawnEventListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        event.setKeepInventory(true); // Keep inventory on death
+        event.setKeepInventory(true);
 
         Bukkit.getScheduler().runTaskLater(SpawnPlugin.getInstance(), () -> {
-            player.spigot().respawn(); // Respawn the player
+            player.spigot().respawn();
 
             Location respawnLocation = SpawnLocationManager.loadSpawnLocation().clone();
             respawnLocation.setWorld(Bukkit.getWorld(ConfigManager.getSpawnWorld()));
@@ -51,7 +51,7 @@ public class SpawnEventListener implements Listener {
             }
 
             player.sendMessage(ConfigManager.getSpawnMessage());
-        }, 25); // Delay of 25 ticks (1.25 seconds)
+        }, 25);
     }
 }
 

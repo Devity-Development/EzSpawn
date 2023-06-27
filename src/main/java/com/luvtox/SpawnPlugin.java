@@ -1,7 +1,6 @@
 package com.luvtox;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -25,8 +24,6 @@ public class SpawnPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        getLogger().info("Enabling EzSpawn by luvtox");
-
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();
         }
@@ -42,13 +39,15 @@ public class SpawnPlugin extends JavaPlugin {
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
         getServer().getPluginManager().registerEvents(new SpawnEventListener(), this);
         getLogger().info("Commands have been loaded");
-        getLogger().info("EzSpawn version  v0.0.2 by Devity has been enabled");
+        getLogger().info("EzSpawn version  v0.0.3 by Devity has been enabled");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info(Color.RED + "Saving Data");
-        getLogger().info(Color.RED + "Shutting down");
+        getLogger().warning("Saving Data");
+        saveConfig();
+        saveDefaultConfig();
+        getLogger().warning("Shutting down");
     }
 
     @Override

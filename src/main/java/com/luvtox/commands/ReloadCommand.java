@@ -12,6 +12,7 @@ import java.util.List;
 
 public class ReloadCommand implements CommandExecutor, TabCompleter {
     private final JavaPlugin plugin;
+    private final String prefix = ChatColor.GREEN + "EzSpawn";
 
     public ReloadCommand(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -22,7 +23,7 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
         if (label.equalsIgnoreCase("ezspawn")) {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 plugin.reloadConfig();
-                sender.sendMessage(ChatColor.GREEN + "EzSpawn configuration reloaded successfully!");
+                sender.sendMessage(prefix + "EzSpawn configuration reloaded successfully!");
                 return true;
             }
         }
