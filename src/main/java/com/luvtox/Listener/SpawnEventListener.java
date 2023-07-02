@@ -19,10 +19,9 @@ public class SpawnEventListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-            if (ConfigManager.teleportOnJoin()) {
-                SpawnCommands.teleportToSpawn(player);
+        if (SpawnLocationManager.isSpawnSet()) {
+            SpawnCommands.teleportToSpawn(player);
         }
-
     }
 
     @EventHandler
@@ -34,24 +33,23 @@ public class SpawnEventListener implements Listener {
             player.spigot().respawn();
 
             Location respawnLocation = SpawnLocationManager.loadSpawnLocation().clone();
-            respawnLocation.setWorld(Bukkit.getWorld(ConfigManager.getSpawnWorld()));
+            if (respawnLocation != null) {
+                player.teleport(respawnLocation);
+                player.setGameMode(GameMode.SURVIVAL);
 
-            player.teleport(respawnLocation);
-            player.setGameMode(GameMode.SURVIVAL);
+                if (ConfigManager.shouldClearInventoryOnSpawn()) {
+                    SpawnCommands.clearPlayerInventory(player);
+                }
+                if (ConfigManager.shouldClearPotionEffectsOnSpawn()) {
+                    SpawnCommands.clearPlayerEffects(player);
+                }
+                if (ConfigManager.shouldHealOnSpawn()) {
+                    player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+                    player.setFoodLevel(20);
+                }
 
-            if (ConfigManager.shouldClearInventoryOnSpawn()) {
-                SpawnCommands.clearPlayerInventory(player);
+                player.sendMessage(ConfigManager.getSpawnMessage());
             }
-            if (ConfigManager.shouldClearPotionEffectsOnSpawn()) {
-                SpawnCommands.clearPlayerEffects(player);
-            }
-            if (ConfigManager.shouldHealOnSpawn()) {
-                player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
-                player.setFoodLevel(20);
-            }
-
-            player.sendMessage(ConfigManager.getSpawnMessage());
         }, 25);
     }
 }
-

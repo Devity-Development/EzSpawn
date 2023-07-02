@@ -37,6 +37,10 @@ public class ConfigManager {
         return (float) config.getDouble("spawn.yaw");
     }
 
+    public static float getSpawnPitch() {
+        return (float) config.getDouble("spawn.pitch");
+    }
+
     public static boolean shouldClearInventoryOnSpawn() {
         return config.getBoolean("spawn.clearInventory", false);
     }
@@ -53,9 +57,12 @@ public class ConfigManager {
         return config.getBoolean("spawn.teleportOnJoin", true);
     }
 
-public static String getSpawnMessage() {
-        SpawnPlugin.getInstance().reloadConfig();
-        config = SpawnPlugin.getInstance().getConfig();
+    public static String getSpawnMessage() {
         return ChatColor.translateAlternateColorCodes('&', config.getString("spawn.message", "You have been teleported to spawn."));
-}
+    }
+
+    public static String getSpawnSoundEffect() {
+        return config.getString("spawn.soundEffect", "ENTITY_PLAYER_LEVELUP");
+    }
+
 }
