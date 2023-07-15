@@ -27,24 +27,24 @@ public class SpawnPlugin extends JavaPlugin {
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();
         }
-        getLogger().info("Generating config");
+        getLogger().info("\u001B[32mGenerating config\u001B[0m");
         File configFile = new File(getDataFolder(), "config.yml");
         if (!configFile.exists()) {
             saveDefaultConfig();
         }
-        getLogger().info("Loading config");
+        getLogger().info("\u001B[32mLoading config\u001B[0m");
         ConfigManager.loadConfig();
-        getLogger().info("Config has been loaded");
-        getLogger().info("Loading commands");
+        getLogger().info("\u001B[32mConfig has been loaded\u001B[0m");
+        getLogger().info("\u001B[32mLoading commands\u001B[0m");
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
         getServer().getPluginManager().registerEvents(new SpawnEventListener(), this);
-        getLogger().info("Commands have been loaded");
-        getLogger().info("EzSpawn version  v0.0.3 by Devity has been enabled");
+        getLogger().info("\u001B[32mCommands have been loaded\u001B[0m");
+        getLogger().info("\u001B[32mEzSpawn version v0.0.3 by Devity has been enabled\u001B[0m");
     }
 
     @Override
     public void onDisable() {
-        getLogger().warning("Saving Data");
+        getLogger().warning("\u001B[31mShutting down\u001B[0m");
         saveConfig();
         saveDefaultConfig();
         getLogger().warning("Shutting down");
@@ -56,9 +56,9 @@ public class SpawnPlugin extends JavaPlugin {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 SpawnLocationManager.saveSpawnLocation(player.getLocation());
-                sender.sendMessage(ChatColor.GREEN + "Spawn location set successfully!");
+                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.GREEN + "Spawn location set successfully!");
             } else {
-                sender.sendMessage(ChatColor.RED + "This command can only be run by a player.");
+                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
             }
             return true;
         }
@@ -68,7 +68,7 @@ public class SpawnPlugin extends JavaPlugin {
                 Player player = (Player) sender;
                 SpawnCommands.teleportToSpawn(player);
             } else {
-                sender.sendMessage(ChatColor.RED + "This command can only be run by a player.");
+                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
             }
             return true;
         }
@@ -76,5 +76,4 @@ public class SpawnPlugin extends JavaPlugin {
         return false;
     }
 }
-
 

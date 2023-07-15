@@ -8,7 +8,11 @@ spawn:
   y: 64.0
   z: 0.0
   yaw: 0.0
+  pitch: 0.0
   # ------------------------------------------------------------------------------------
+
+  # Main plugin prefix
+  prefix: "&f[&6EzSpawn&f]"
 
    # On /spawn
    # Clear INV on /spawn & Join
@@ -28,5 +32,4 @@ spawn:
 
   # Custom sound effent on /spawn
   soundEffect: ENTITY_PLAYER_LEVELUP
-
 

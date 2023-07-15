@@ -41,6 +41,10 @@ public class ConfigManager {
         return (float) config.getDouble("spawn.pitch");
     }
 
+    public static String prefix() {
+        return config.getString("spawn.prefix", "&f[&6EzSpawn&f]");
+    }
+
     public static boolean shouldClearInventoryOnSpawn() {
         return config.getBoolean("spawn.clearInventory", false);
     }

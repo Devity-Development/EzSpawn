@@ -1,19 +1,20 @@
 package com.luvtox.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.luvtox.Config.ConfigManager;
+
+import net.md_5.bungee.api.ChatColor;
+
 import java.util.Collections;
 import java.util.List;
 
 public class ReloadCommand implements CommandExecutor, TabCompleter {
     private final JavaPlugin plugin;
-    private final String prefix = ChatColor.GREEN + "EzSpawn";
-
     public ReloadCommand(JavaPlugin plugin) {
         this.plugin = plugin;
     }
@@ -23,7 +24,7 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
         if (label.equalsIgnoreCase("ezspawn")) {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 plugin.reloadConfig();
-                sender.sendMessage(prefix + "EzSpawn configuration reloaded successfully!");
+                sender.sendMessage(ConfigManager.prefix() + " " + ChatColor.GREEN +  "EzSpawn configuration reloaded successfully!");
                 return true;
             }
         }
@@ -38,4 +39,3 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
         return Collections.emptyList();
     }
 }
-
