@@ -1,6 +1,6 @@
 # EzSpawn Plugin
 
-![Minecraft](https://img.shields.io/badge/Minecraft-1.19.4-green.svg) ![Plugin Version](https://img.shields.io/badge/Plugin%20Version-v0.0.3-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20-green.svg) ![Plugin Version](https://img.shields.io/badge/Plugin%20Version-v0.0.4-blue.svg)
 
 EzSpawn is a powerful plugin designed for Minecraft PvP servers that enhances the `/spawn` command functionality. It provides various features such as custom messages, configurable options, hex color support, and a comprehensive installation guide and help section.
 
