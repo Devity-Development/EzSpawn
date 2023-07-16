@@ -1,6 +1,8 @@
 package com.luvtox.commands;
 
 import com.luvtox.SpawnPlugin;
+import com.luvtox.utils.AccessPoint;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -10,8 +12,6 @@ import org.bukkit.potion.PotionEffect;
 
 import com.luvtox.Config.ConfigManager;
 import com.luvtox.Managers.SpawnLocationManager;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class SpawnCommands {
 
@@ -38,7 +38,7 @@ public class SpawnCommands {
             player.sendMessage(configManager.getSpawnMessage());
             playSpawnSoundEffect(player);
         } else {
-            player.sendMessage(configManager.prefix() + "" + ChatColor.YELLOW + "Spawn location is not set.");
+            player.sendMessage(coloredMessage(configManager.prefix() + " &eSpawn location is not set."));
         }
     }
 
@@ -61,8 +61,13 @@ public class SpawnCommands {
                 Sound sound = Sound.valueOf(soundEffect);
                 player.playSound(player.getLocation(), sound, 1.0f, 1.0f);
             } catch (IllegalArgumentException e) {
-                player.sendMessage(configManager.prefix() + " " + "Invalis sound effect : " + soundEffect);
+                player.sendMessage(coloredMessage(configManager.prefix() + " " + "Invalid sound effect : " + soundEffect));
             }
         }
+    }
+
+
+    private String coloredMessage(String message) {
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 }

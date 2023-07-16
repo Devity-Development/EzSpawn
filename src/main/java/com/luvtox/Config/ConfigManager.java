@@ -1,5 +1,6 @@
 package com.luvtox.Config;
 
+import com.luvtox.utils.AccessPoint;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -43,7 +44,7 @@ public class ConfigManager {
     }
 
     public String prefix() {
-        return ChatColor.translateAlternateColorCodes('&', config.getString("spawn.prefix", "&f[&6EzSpawn&f]"));
+        return coloredMessage(config.getString("spawn.prefix", "&f[&6EzSpawn&f]"));
     }
 
     public boolean shouldClearInventoryOnSpawn() {
@@ -63,11 +64,15 @@ public class ConfigManager {
     }
 
     public String getSpawnMessage() {
-        return ChatColor.translateAlternateColorCodes('&', config.getString("spawn.message", "You have been teleported to spawn."));
+        return coloredMessage(config.getString("spawn.message", "You have been teleported to spawn."));
     }
 
     public String getSpawnSoundEffect() {
         return config.getString("spawn.soundEffect", "ENTITY_PLAYER_LEVELUP");
+    }
+
+    private String coloredMessage(String message) {
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
 }
