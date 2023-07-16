@@ -8,23 +8,24 @@ import com.luvtox.SpawnPlugin;
 import com.luvtox.Config.ConfigManager;
 
 public class SpawnLocationManager {
-    public static void saveSpawnLocation(Location location) {
-        ConfigManager.getConfig().set("spawn.world", location.getWorld().getName());
-        ConfigManager.getConfig().set("spawn.x", location.getX());
-        ConfigManager.getConfig().set("spawn.y", location.getY());
-        ConfigManager.getConfig().set("spawn.z", location.getZ());
-        ConfigManager.getConfig().set("spawn.yaw", location.getYaw());
-        ConfigManager.getConfig().set("spawn.pitch", location.getPitch());
+    private final ConfigManager configManager = SpawnPlugin.getInstance().getConfigManager();
+    public void saveSpawnLocation(Location location) {
+        configManager.getConfig().set("spawn.world", location.getWorld().getName());
+        configManager.getConfig().set("spawn.x", location.getX());
+        configManager.getConfig().set("spawn.y", location.getY());
+        configManager.getConfig().set("spawn.z", location.getZ());
+        configManager.getConfig().set("spawn.yaw", location.getYaw());
+        configManager.getConfig().set("spawn.pitch", location.getPitch());
         SpawnPlugin.getInstance().saveConfig();
     }
 
-    public static Location loadSpawnLocation() {
-        String worldName = ConfigManager.getSpawnWorld();
-        double x = ConfigManager.getSpawnX();
-        double y = ConfigManager.getSpawnY();
-        double z = ConfigManager.getSpawnZ();
-        float yaw = ConfigManager.getSpawnYaw();
-        float pitch = ConfigManager.getSpawnPitch();
+    public Location loadSpawnLocation() {
+        String worldName = configManager.getSpawnWorld();
+        double x = configManager.getSpawnX();
+        double y = configManager.getSpawnY();
+        double z = configManager.getSpawnZ();
+        float yaw = configManager.getSpawnYaw();
+        float pitch = configManager.getSpawnPitch();
 
         World world = Bukkit.getWorld(worldName);
         if (world != null) {
@@ -34,8 +35,8 @@ public class SpawnLocationManager {
         return null; // Return null if the world is not found
     }
 
-    public static boolean isSpawnSet() {
-        String worldName = ConfigManager.getSpawnWorld();
+    public boolean isSpawnSet() {
+        String worldName = configManager.getSpawnWorld();
         return Bukkit.getWorld(worldName) != null;
     }
 }

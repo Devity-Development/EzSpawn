@@ -12,8 +12,6 @@ import com.luvtox.Managers.SpawnLocationManager;
 import com.luvtox.commands.ReloadCommand;
 import com.luvtox.commands.SpawnCommands;
 
-import java.io.File;
-
 public class SpawnPlugin extends JavaPlugin {
     private static SpawnPlugin instance;
 
@@ -21,19 +19,21 @@ public class SpawnPlugin extends JavaPlugin {
         return instance;
     }
 
+    private ConfigManager configManager;
+
     @Override
     public void onEnable() {
         instance = this;
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();
         }
+
+        this.getConfig().options().copyDefaults(true);
+        this.saveConfig(); //Config loader
+        this.configManager = new ConfigManager(this.getConfig());
+
         getLogger().info("\u001B[32mGenerating config\u001B[0m");
-        File configFile = new File(getDataFolder(), "config.yml");
-        if (!configFile.exists()) {
-            saveDefaultConfig();
-        }
         getLogger().info("\u001B[32mLoading config\u001B[0m");
-        ConfigManager.loadConfig();
         getLogger().info("\u001B[32mConfig has been loaded\u001B[0m");
         getLogger().info("\u001B[32mLoading commands\u001B[0m");
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
@@ -45,8 +45,6 @@ public class SpawnPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().warning("\u001B[31mShutting down\u001B[0m");
-        saveConfig();
-        saveDefaultConfig();
         getLogger().warning("Shutting down");
     }
 
@@ -55,10 +53,10 @@ public class SpawnPlugin extends JavaPlugin {
         if (command.getName().equalsIgnoreCase("setspawn")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                SpawnLocationManager.saveSpawnLocation(player.getLocation());
-                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.GREEN + "Spawn location set successfully!");
+                new SpawnLocationManager().saveSpawnLocation(player.getLocation());
+                sender.sendMessage(this.configManager.prefix() + "" + ChatColor.GREEN + "Spawn location set successfully!");
             } else {
-                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
+                sender.sendMessage(this.configManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
             }
             return true;
         }
@@ -66,14 +64,18 @@ public class SpawnPlugin extends JavaPlugin {
         if (command.getName().equalsIgnoreCase("spawn")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                SpawnCommands.teleportToSpawn(player);
+                new SpawnCommands().teleportToSpawn(player);
             } else {
-                sender.sendMessage(ConfigManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
+                sender.sendMessage(this.configManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
             }
             return true;
         }
 
         return false;
+    }
+
+    public ConfigManager getConfigManager() {
+        return configManager;
     }
 }
 
