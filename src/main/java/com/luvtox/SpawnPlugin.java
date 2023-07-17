@@ -1,5 +1,6 @@
 package com.luvtox;
 
+import com.luvtox.versionchecker.VersionChecker;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -23,6 +24,9 @@ public class SpawnPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        new VersionChecker(this).run(); //Version checker
+
         instance = this;
         if (!getDataFolder().exists()) {
             getDataFolder().mkdirs();

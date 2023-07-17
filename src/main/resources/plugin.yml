@@ -1,5 +1,5 @@
 name: EzSpawn
-main : com.luvtox.SpawnPlugin
+main : dev.luvtox.SpawnPlugin
 author : Devity
 version: 0.0.4
 api-version: 1.19

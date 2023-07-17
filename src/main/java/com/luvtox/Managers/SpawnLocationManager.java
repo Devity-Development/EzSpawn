@@ -9,6 +9,7 @@ import com.luvtox.Config.ConfigManager;
 
 public class SpawnLocationManager {
     private final ConfigManager configManager = SpawnPlugin.getInstance().getConfigManager();
+    private final SpawnPlugin plugin = SpawnPlugin.getInstance();
     public void saveSpawnLocation(Location location) {
         configManager.getConfig().set("spawn.world", location.getWorld().getName());
         configManager.getConfig().set("spawn.x", location.getX());
@@ -16,7 +17,10 @@ public class SpawnLocationManager {
         configManager.getConfig().set("spawn.z", location.getZ());
         configManager.getConfig().set("spawn.yaw", location.getYaw());
         configManager.getConfig().set("spawn.pitch", location.getPitch());
-        SpawnPlugin.getInstance().saveConfig();
+
+        plugin.saveConfig();
+        plugin.reloadConfig();
+        plugin.getConfigManager().reload(plugin.getConfig());
     }
 
     public Location loadSpawnLocation() {
