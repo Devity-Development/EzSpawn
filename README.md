@@ -18,7 +18,7 @@ EzSpawn is a powerful plugin designed for Minecraft PvP servers that enhances th
 
 To install EzSpawn, follow these steps:
 
-1. Download the latest version of the plugin from the [Releases]([https://github.com/your-username/EzSpawn/releases](https://github.com/Ammar-XD/EzSpawn/releases/tag/ezspawn)) page.
+1. Download the latest version of the plugin from the [SpigotMC]([[https://github.com/your-username/EzSpawn/releases](https://github.com/Ammar-XD/EzSpawn/releases/tag/ezspawn](https://www.spigotmc.org/resources/ezspawn-light-weight-1-12x-1-20x.110580/))) page.
 2. Place the downloaded JAR file into your server's `plugins` folder.
 3. Restart or reload your server to generate the plugin's configuration file.
 4. Customize the plugin's settings in the generated `config.yml` file.
