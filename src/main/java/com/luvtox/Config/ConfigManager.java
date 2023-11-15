@@ -20,27 +20,27 @@ public class ConfigManager {
     }
 
     public String getSpawnWorld() {
-        return config.getString("spawn.world", "world");
+        return config.getString("location.world", "world");
     }
 
     public double getSpawnX() {
-        return config.getDouble("spawn.x");
+        return config.getDouble("location.x");
     }
 
     public double getSpawnY() {
-        return config.getDouble("spawn.y");
+        return config.getDouble("location.y");
     }
 
     public double getSpawnZ() {
-        return config.getDouble("spawn.z");
+        return config.getDouble("location.z");
     }
 
     public float getSpawnYaw() {
-        return (float) config.getDouble("spawn.yaw");
+        return (float) config.getDouble("location.yaw");
     }
 
     public float getSpawnPitch() {
-        return (float) config.getDouble("spawn.pitch");
+        return (float) config.getDouble("location.pitch");
     }
 
     public String prefix() {

@@ -43,7 +43,8 @@ public class SpawnPlugin extends JavaPlugin {
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
         getServer().getPluginManager().registerEvents(new SpawnEventListener(), this);
         getLogger().info("\u001B[32mCommands have been loaded\u001B[0m");
-        getLogger().info("\u001B[32mEzSpawn version v0.0.3 by Devity has been enabled\u001B[0m");
+        getLogger().info("\u001B[32mEzSpawn version v0.0.7 by Devity has been enabled\u001B[0m");
+
     }
 
     @Override
@@ -58,9 +59,9 @@ public class SpawnPlugin extends JavaPlugin {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 new SpawnLocationManager().saveSpawnLocation(player.getLocation());
-                sender.sendMessage(this.configManager.prefix() + "" + ChatColor.GREEN + "Spawn location set successfully!");
+                sender.sendMessage(this.configManager.prefix() + " " + ChatColor.GREEN + "Spawn location set successfully!");
             } else {
-                sender.sendMessage(this.configManager.prefix() + "" + ChatColor.RED + "This command can only be run by a player.");
+                sender.sendMessage(this.configManager.prefix() + " " + ChatColor.RED + "This command can only be run by a player.");
             }
             return true;
         }

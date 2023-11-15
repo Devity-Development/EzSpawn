@@ -1,12 +1,11 @@
 name: EzSpawn
 main : dev.luvtox.SpawnPlugin
 author : Devity
-version: 0.0.4
+version: 0.0.7
 api-version: 1.19
 commands:
   ezspawn:
     description: Reloads the EzSpawn configuration
-    usage: /ezspawn reload
     permissions: ezspawn.reload
 
   setspawn:

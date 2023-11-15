@@ -13,19 +13,23 @@ import java.util.List;
 
 public class ReloadCommand extends AccessPoint implements CommandExecutor, TabCompleter {
     private final SpawnPlugin plugin;
+
     public ReloadCommand(SpawnPlugin plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-
-            plugin.reloadConfig();
-            plugin.getConfigManager().reload(plugin.getConfig());
-            sender.sendMessage(coloredMessage(plugin.getConfigManager().prefix() + " &aEzSpawn configuration reloaded successfully!"));
-            return true;
+        // Check if the sender is an op player
+        if (sender.isOp()) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                plugin.reloadConfig();
+                plugin.getConfigManager().reload(plugin.getConfig());
+                sender.sendMessage(coloredMessage(plugin.getConfigManager().prefix() + " &aEzSpawn configuration reloaded successfully!"));
+                return true;
+            }
+        } else {
+            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
         }
 
         return false;

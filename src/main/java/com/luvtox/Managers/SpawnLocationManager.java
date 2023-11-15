@@ -11,12 +11,12 @@ public class SpawnLocationManager {
     private final ConfigManager configManager = SpawnPlugin.getInstance().getConfigManager();
     private final SpawnPlugin plugin = SpawnPlugin.getInstance();
     public void saveSpawnLocation(Location location) {
-        configManager.getConfig().set("spawn.world", location.getWorld().getName());
-        configManager.getConfig().set("spawn.x", location.getX());
-        configManager.getConfig().set("spawn.y", location.getY());
-        configManager.getConfig().set("spawn.z", location.getZ());
-        configManager.getConfig().set("spawn.yaw", location.getYaw());
-        configManager.getConfig().set("spawn.pitch", location.getPitch());
+        configManager.getConfig().set("location.world", location.getWorld().getName());
+        configManager.getConfig().set("location.x", location.getX());
+        configManager.getConfig().set("location.y", location.getY());
+        configManager.getConfig().set("location.z", location.getZ());
+        configManager.getConfig().set("location.yaw", location.getYaw());
+        configManager.getConfig().set("location.pitch", location.getPitch());
 
         plugin.saveConfig();
         plugin.reloadConfig();
