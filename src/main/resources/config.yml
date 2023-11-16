@@ -28,9 +28,12 @@ spawn:
   # Always teleport to spawn 
   teleportOnJoin : true
 
+  # Make the player respawn at bed location
+  # I am still testing this feature (Use on  your own risk)
+  respawnAtBed: false
+
   # Custom message to be sent on /spawn
   message: "&aTeleported to spawn"
 
   # Custom sound effent on /spawn
   soundEffect: ENTITY_PLAYER_LEVELUP
-

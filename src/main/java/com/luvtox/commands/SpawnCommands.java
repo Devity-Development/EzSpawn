@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.potion.PotionEffect;
 
 import com.luvtox.Config.ConfigManager;

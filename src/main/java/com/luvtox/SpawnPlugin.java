@@ -43,7 +43,7 @@ public class SpawnPlugin extends JavaPlugin {
         getCommand("ezspawn").setExecutor(new ReloadCommand(this));
         getServer().getPluginManager().registerEvents(new SpawnEventListener(), this);
         getLogger().info("\u001B[32mCommands have been loaded\u001B[0m");
-        getLogger().info("\u001B[32mEzSpawn version v0.0.7 by Devity has been enabled\u001B[0m");
+        getLogger().info("\u001B[32mEzSpawn version v0.0.8 by Devity has been enabled\u001B[0m");
 
     }
 

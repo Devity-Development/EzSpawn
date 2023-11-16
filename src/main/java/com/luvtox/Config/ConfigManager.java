@@ -63,12 +63,17 @@ public class ConfigManager {
         return config.getBoolean("spawn.teleportOnJoin", true);
     }
 
+
     public String getSpawnMessage() {
         return coloredMessage(config.getString("spawn.message", "You have been teleported to spawn."));
     }
 
     public String getSpawnSoundEffect() {
         return config.getString("spawn.soundEffect", "ENTITY_PLAYER_LEVELUP");
+    }
+
+    public boolean respawnAtBed() {
+        return config.getBoolean("spawn.respawnAtBed", false);
     }
 
     private String coloredMessage(String message) {

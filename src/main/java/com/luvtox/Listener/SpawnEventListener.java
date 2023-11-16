@@ -1,10 +1,8 @@
 package com.luvtox.Listener;
 
-import com.luvtox.Config.ConfigManager;
 import com.luvtox.SpawnPlugin;
 import com.luvtox.utils.AccessPoint;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -14,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.luvtox.Managers.SpawnLocationManager;
 import com.luvtox.commands.SpawnCommands;
 
 public class SpawnEventListener extends AccessPoint implements Listener {
@@ -22,7 +19,9 @@ public class SpawnEventListener extends AccessPoint implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (spawnLocationManager.isSpawnSet()) {
-            spawnCommands.teleportToSpawn(player);
+            if (configManager.teleportOnJoin()) {
+                spawnCommands.teleportToSpawn(player);
+            }
         }
     }
 
@@ -38,7 +37,18 @@ public class SpawnEventListener extends AccessPoint implements Listener {
 
             if(respawnLocation == null) return;
 
-            player.teleport(respawnLocation);
+            if (configManager.respawnAtBed()) {
+                if (player.getBedSpawnLocation() != null) {
+                    Location bedSpawnLocation = player.getBedSpawnLocation();
+                    player.sendMessage("Respawning at your bed spawn location.");
+                    player.teleport(bedSpawnLocation);
+                } else  {
+                    player.teleport(respawnLocation);
+                }
+            } else {
+                player.teleport(respawnLocation);
+            }
+
             player.setGameMode(GameMode.SURVIVAL);
 
             if (configManager.shouldClearInventoryOnSpawn()) {
